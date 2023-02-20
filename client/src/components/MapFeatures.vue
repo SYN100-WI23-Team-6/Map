@@ -91,6 +91,7 @@
               proximity: props.coords ? `${props.coords.lng},${props.coords.lat}` : "0,0",
             });
             const data = await axios.get(`http://localhost:3000/api/search/${searchQuery.value}?${params}`);
+            // const data = await axios.get(`api/search/${searchQuery.value}?${params}`);
             searchData.value = data.data.features;
           }
         }, 750);
