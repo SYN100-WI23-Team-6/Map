@@ -61,10 +61,17 @@ export default {
       .then(data => {
         console.log(JSON.parse(JSON.stringify(data)));
         const arr = (JSON.parse(JSON.stringify(data))).locations;
+        
         // loop through each location of array and plot marker
         arr.forEach(location => {
-          const marker = leaflet.marker([location.latitude, location.longitude]).addTo(map);
-          marker.addTo(map);
+          const greenIcon = leaflet.icon({
+            iconUrl: require("../assets/map-marker-green.png"),
+            iconSize: [25, 41], // size of the icon
+          });
+          const marker = leaflet.marker([location.latitude, location.longitude], {icon: greenIcon}).addTo(map);
+          // add popup for each marker
+          const popupContent = leaflet.popup().setContent(location.name);
+          marker.addTo(map).bindPopup(popupContent);
         });
       })
       .catch(err => {
@@ -129,8 +136,8 @@ export default {
       const plotGeoLocation = (coords) => {
         // create custom marker
         const customMarker = leaflet.icon({
-          iconUrl: require("../assets/map-marker-red.svg"),
-          iconSize: [35, 35],
+          iconUrl: require("../assets/map-marker-red.png"),
+          iconSize: [25, 41],
         });
         // create new marker with coords and custom marker
         geoMarker.value = leaflet
@@ -146,8 +153,8 @@ export default {
           map.removeLayer(resultMarker.value);
         }
         const customMarker = leaflet.icon({
-          iconUrl: require("../assets/map-marker-blue.svg"),
-          iconSize: [35, 35], // size of the icon
+          iconUrl: require("../assets/map-marker-gold.png"),
+          iconSize: [25, 41], // size of the icon
         });
         resultMarker.value = leaflet
         .marker([coords.coordinates[1], coords.coordinates[0]], { icon: customMarker })
