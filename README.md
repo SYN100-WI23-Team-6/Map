@@ -2,7 +2,7 @@
 
 ## Usage
 
-Go to server, run
+Server setup
 
 ```bash
 cd server
@@ -10,7 +10,7 @@ npm install
 npm run dev
 ```
 
-Go to client, run
+Client setup
 
 ```bash
 cd client
