@@ -96,6 +96,7 @@
           }
         }, 750);
       };
+      // Select a result from search results
       const selectResult = (result) => {
         selectedResult.value = result;
         emit("plotResult", result.geometry);
